@@ -137,6 +137,7 @@ const Signup = () => {
               </div>
             )}
             <button
+              disabled={isLoading}
               type="submit"
               style={{
                 paddingTop: 8,
