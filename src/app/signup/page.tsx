@@ -1,71 +1,11 @@
 "use client";
-// import { useState } from "react";
-// import { api } from "~/trpc/react";
-
-// const Signup = () => {
-//   const [formValue, setFormValue] = useState<{
-//     email: string;
-//     password: string;
-//   }>({
-//     email: "",
-//     password: "",
-//   });
-//   return (
-//     <div>
-//       <div>sign up</div>
-//       <form
-// onSubmit={async (e) => {
-//   e.preventDefault();
-//   await api.post.userSignup.query({
-//     email: formValue.email,
-//     password: formValue.password,
-//   });
-// }}
-//       >
-//         <input
-//           type="email"
-//           name="email"
-//           onChange={(e) => {
-//             setFormValue((prev) => {
-//               return {
-//                 ...prev,
-//                 email: e.target.value,
-//               };
-//             });
-//           }}
-//         />
-//         <input
-//           type="password"
-//           name="password"
-//           onChange={(e) => {
-//             setFormValue((prev) => {
-//               return {
-//                 ...prev,
-//                 password: e.target.value,
-//               };
-//             });
-//           }}
-//         />
-//         <button>sign up</button>
-//       </form>
-//       <div>
-//         you have a previous account? login{" "}
-//         <span style={{ color: "red" }}>here</span>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Signup;
-
-"use client";
-import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { api } from "~/trpc/react";
 
 const Signup = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<{
     success: boolean;
     message: string;
@@ -87,7 +27,7 @@ const Signup = () => {
           fontWeight: "bold",
         }}
       >
-        Signup
+        Sign up
       </div>
       <div className="login-wrapper">
         <Image
@@ -121,6 +61,7 @@ const Signup = () => {
             }}
             onSubmit={async (e) => {
               e.preventDefault();
+              setIsLoading(true);
               const res = await api.post.userSignup.query({
                 email: formValue.email,
                 password: formValue.password,
@@ -130,6 +71,7 @@ const Signup = () => {
                 email: "",
                 password: "",
               });
+              setIsLoading(false);
             }}
           >
             <div>Email</div>
@@ -205,7 +147,7 @@ const Signup = () => {
                 borderRadius: 18,
               }}
             >
-              Signup
+              {isLoading === true ? "Loading..." : "Signup"}
             </button>
           </form>
         </div>
