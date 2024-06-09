@@ -11,7 +11,7 @@ export const postRouter = createTRPCRouter({
   userSignup: publicProcedure
     .input(
       z.object({
-        email: z.string().email(),
+        email: z.string(),
         password: z.string(),
       })
     )
@@ -21,6 +21,8 @@ export const postRouter = createTRPCRouter({
           email: input.email,
         },
       });
+      console.log(1);
+
       if (emailExists != null) {
         return {
           success: false,
@@ -28,6 +30,7 @@ export const postRouter = createTRPCRouter({
         };
       }
 
+      console.log(2);
       const hashedPassword = await hashPassword({
         plaintextPassword: input.password,
       });
@@ -37,6 +40,7 @@ export const postRouter = createTRPCRouter({
           password: hashedPassword,
         },
       });
+      console.log(3);
 
       return {
         success: true,
