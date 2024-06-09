@@ -1,0 +1,33 @@
+.container {
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.login-wrapper {
+  display: flex;
+  gap: 24px;
+  margin-top: 8px;
+}
+.imgs {
+  
+  max-width: 50%;
+  border-radius: 18px;
+  }
+.form-wrapper{
+  width: 100%;
+}
+  @media only screen and (max-width: 600px) {
+    .imgs {
+    max-width: 100%;
+  }
+  .login-wrapper {
+    flex-direction: column;
+  }
+  .container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .form-wrapper{
+    width: 100%;
+  }
+}
