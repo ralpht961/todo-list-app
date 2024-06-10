@@ -35,6 +35,7 @@ const AdminPage = (props: Props) => {
         {props.allUsers.map((user) => {
           return (
             <div
+              key={user.id}
               style={{
                 maxWidth: 70,
                 display: "flex",
@@ -44,7 +45,7 @@ const AdminPage = (props: Props) => {
               }}
             >
               <Image
-                src={user.image || "/images/default.png"}
+                src={user.image ?? "/images/default.png"}
                 alt="image"
                 width={0}
                 height={0}

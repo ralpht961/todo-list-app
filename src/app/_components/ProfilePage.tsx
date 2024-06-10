@@ -29,7 +29,7 @@ type Props = {
 
 const ProfilePage = (props: Props) => {
   const [profilePic, setProfilePic] = useState<string>(
-    props.userData.image || "/images/default.png"
+    props.userData.image ?? "/images/default.png"
   );
   return (
     <div className="container2">

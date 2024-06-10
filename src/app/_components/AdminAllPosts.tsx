@@ -38,6 +38,7 @@ const AdminAllPosts = (props: Props) => {
         {props.allPosts.map((post) => {
           return (
             <div
+              key={post.id}
               style={{
                 maxWidth: 70,
                 display: "flex",
